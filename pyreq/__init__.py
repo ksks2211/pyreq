@@ -1,2 +1,2 @@
 from req import res, res_text
-from download import download, url_download
+from download import download
