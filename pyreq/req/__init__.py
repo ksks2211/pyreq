@@ -1,1 +1,1 @@
-from .url_req import get_text, get_response
+from .url_req import res, res_text

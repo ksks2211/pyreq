@@ -2,7 +2,7 @@ import urllib.request as req
 from urllib.error import HTTPError, URLError
 
 
-def get_response(url, read=False):
+def res(url, read=False):
     try:
         res = req.urlopen(url)
     except HTTPError as e:
@@ -20,11 +20,11 @@ def get_response(url, read=False):
     return res
 
 
-def get_text(url, encoding="utf-8"):
-    return get_response(url, True).decode(encoding)
+def res_text(url, encoding="utf-8"):
+    return res(url, True).decode(encoding)
 
 
 if __name__ == "__main__":
-    res = get_text("https://google.com")
+    res = res_text("https://google.com")
 
     print(res)
