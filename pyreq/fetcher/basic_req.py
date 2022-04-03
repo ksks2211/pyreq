@@ -1,8 +1,9 @@
 import urllib.request as req
 from urllib.error import HTTPError, URLError
+import json
 
 
-def res(url, read=False):
+def fetch_res(url, read=False):
     try:
         res = req.urlopen(url)
     except HTTPError as e:
@@ -20,11 +21,16 @@ def res(url, read=False):
     return res
 
 
-def res_text(url, encoding="utf-8"):
-    return res(url, True).decode(encoding)
+def fetch_text(url, encoding="utf-8"):
+    return fetch_res(url, True).decode(encoding)
+
+
+# JSON => python dict
+def fetch_json(url):
+    return json.loads(fetch_res(url, True))
 
 
 if __name__ == "__main__":
-    res = res_text("https://google.com")
+    res = fetch_json("http://192.168.0.3:1234/")
 
     print(res)

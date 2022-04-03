@@ -1,2 +1,2 @@
-from .req import res, res_text
-from download import download
+from .fetcher import fetch_res, fetch_text
+from .downloader import download

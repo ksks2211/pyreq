@@ -17,5 +17,5 @@ setuptools.setup(
     project_urls={"Bug Tracker": "https://github.com/kkll22/pyreq/issues"},
     license="MIT",
     packages=["pyreq", "pyreq.req", "pyreq.download"],
-    install_requires=["requests"],
+    install_requires=["requests", "multimethod"],
 )
