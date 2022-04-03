@@ -1,3 +1,3 @@
-from .fetcher import fetch_res, fetch_text
+from .fetcher import fetch_res, fetch_text, Agent
 from .downloader import download
-from .collecter import collect_links
+from .collector import collect_links

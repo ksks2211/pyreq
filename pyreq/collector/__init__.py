@@ -1,2 +1,1 @@
-from .selector import collect_links
-from . import selector
+__all__ = ["selector"]
