@@ -1,2 +1,2 @@
-from . import selector
-from . import xpath
+import selector
+import xpath
