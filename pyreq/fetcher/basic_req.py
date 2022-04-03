@@ -7,30 +7,26 @@ def fetch_res(url, read=False):
     try:
         res = req.urlopen(url)
     except HTTPError as e:
-        print("Failed")
+        print("HTTPError")
         print(e)
     except URLError as e:
-        print("Failed")
+        print("URLError")
         print(e)
     except Exception as e:
-        print("Failed")
+        print("Exception")
         print(e)
-
-    if read:
-        return res.read()
-    return res
+    return res.read() if read else res
 
 
-def fetch_text(url, encoding="utf-8"):
+def fetch_text(url: str, encoding="utf-8"):
     return fetch_res(url, True).decode(encoding)
 
 
 # JSON => python dict
-def fetch_json(url):
+def fetch_json(url: str) -> dict:
     return json.loads(fetch_res(url, True))
 
 
 if __name__ == "__main__":
-    res = fetch_json("http://192.168.0.3:1234/")
-
+    res = fetch_json("http://192.168.0.3:1234")
     print(res)
