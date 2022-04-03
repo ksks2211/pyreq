@@ -1,2 +1,1 @@
-import selector
-import xpath
+from .selector import collect_links
