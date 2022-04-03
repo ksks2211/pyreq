@@ -1,9 +1,18 @@
 import urllib.request as req
 from urllib.error import HTTPError, URLError
+from urllib.parse import urlencode, urlparse
 import json
 
 
-def fetch_res(url, read=False):
+def get_url(url, query: dict):
+    q = urlencode(query)
+    glue = "&" if urlparse(url).query else "?"
+    return url + glue + q
+
+
+def fetch_res(url, read=False, query=dict()):
+    if query:
+        url = get_url(url, query)
     try:
         res = req.urlopen(url)
     except HTTPError as e:
@@ -18,15 +27,21 @@ def fetch_res(url, read=False):
     return res.read() if read else res
 
 
-def fetch_text(url: str, encoding="utf-8"):
-    return fetch_res(url, True).decode(encoding)
+def fetch_text(url: str, query=dict(), encoding="utf-8"):
+    return fetch_res(url, True, query).decode(encoding)
 
 
 # JSON => python dict
-def fetch_json(url: str) -> dict:
-    return json.loads(fetch_res(url, True))
+def fetch_json(url: str, query=dict()) -> dict:
+    return json.loads(fetch_res(url, True, query))
 
 
 if __name__ == "__main__":
-    res = fetch_json("http://192.168.0.3:1234")
+    URL = "https://api.ipify.org"
+    format = {"format": "json"}
+    res = fetch_json(URL, format)
+    print(res)
+
+    format = {"format": "text"}
+    res = fetch_text(URL, format)
     print(res)

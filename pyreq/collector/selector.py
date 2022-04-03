@@ -1,4 +1,4 @@
-from lxml.html import fromstring, tostring
+from lxml.html import fromstring
 from urllib.parse import urljoin
 import re
 
