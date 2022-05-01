@@ -4,7 +4,7 @@ from urllib.parse import urlencode, urlparse
 import json
 
 
-def get_url(url, query: dict):
+def get_url(url, query: dict) -> str:
     q = urlencode(query)
     glue = "&" if urlparse(url).query else "?"
     return url + glue + q
